@@ -1,5 +1,7 @@
 # FastAPI + Tortoise-ORM + Aerich
 
+## This project working in [This server](https://ichiri0server.ru/docs)
+
 Quick example of FastAPI with Tortoise and Aerich (for migration support).
 
 ## Quick Start
@@ -47,9 +49,14 @@ Want to access the database via psql?
 $ docker-compose exec web-db psql -U postgres
 ```
 
+### Or run this script:
+```sh
+bash init_database.sh
+```
+
 Then, you can connect to the database and run SQL queries. For example:
 
 ```sh
-# \c web
-# select * from event;
+\c web
+select * from users;
 ```

@@ -17,24 +17,12 @@ app = create_application()
 app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Разрешить все источники, или укажите конкретные
+    allow_origins=["*"], 
     allow_credentials=True,
-    allow_methods=["*"],  # Разрешить все методы, или укажите конкретные
-    allow_headers=["*"],  # Разрешить все заголовки, или укажите конкретные
+    allow_methods=["*"],  
+    allow_headers=["*"], 
 )
 
-# @app.on_event("startup")
-# async def startup_event():
-#     print("Connecting to database...")
-#     await Tortoise.init(
-#         db_url=os.environ.get("DATABASE_URL"),
-#         modules={"models": ["app.database.models.user"]}
-#     )
-#     await Tortoise.generate_schemas()
-
-# @app.on_event("shutdown")
-# async def shutdown_event():
-#     await Tortoise.close_connections()
 
 
 @app.on_event("startup")

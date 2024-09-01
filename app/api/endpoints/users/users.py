@@ -11,7 +11,9 @@ from tortoise.contrib.fastapi import HTTPNotFoundError
 from tortoise.transactions import in_transaction
 from typing import List, Optional
 
+
 router = APIRouter()
+
 
 @router.get('/users' , response_model=Optional[List[UserSchema]])
 async def get_users():
@@ -24,6 +26,7 @@ async def create_user(user: UserCreateSchema): # type: ignore
     user_obj = await User.create(**user.dict(exclude_unset=True))
     await user_obj.save()
     return await UserSchema.from_tortoise_orm(user_obj)
+
 
 @router.get("/{user_id}", response_model=UserSchema, responses={404: {"model": HTTPNotFoundError}})
 async def get_user(user_id: int):
@@ -53,6 +56,7 @@ async def update_user_by_tg_id(user_id: int, user: UserCreateSchema): # type: ig
     user_obj.update_from_dict(user.dict())
     await user_obj.save()
     return await UserSchema.from_tortoise_orm(user_obj)
+
 
 @router.delete("/tg/{user_id}", responses={404: {"model": HTTPNotFoundError}})
 async def delete_user_by_tg_id(user_id: int):

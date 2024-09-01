@@ -17,7 +17,7 @@ services:
   web-db:
     image: postgres:12-alpine
     ports:
-    - "5432:5432"
+    - "5433:5433"
 
     environment:
       - POSTGRES_USER=postgres
